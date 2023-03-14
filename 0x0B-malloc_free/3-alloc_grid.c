@@ -1,62 +1,53 @@
 #include "main.h"
-/**
- *_strlen - count arrray
- *@s: array of elements
- *Return: i
- */
-
-int _strlen(char *s)
-{
-	unsigned int i;
-
-	i = 0;
-	while (s[i] != '\0') /*Count character of string*/
-	{
-		i++;
-	}
-
-	return (i);
-}
+#include <stdlib.h>
 
 /**
- *str_concat - back a pointer to array
- *@s1: Array one
- *@s2: Array two
- *Return: Always an array dinamic
- */
+  * alloc_grid - ...
+  * @width: ...
+  * @height: ...
+  *
+  * Return: ...
+  */
 
-char *str_concat(char *s1, char *s2)
+int **alloc_grid(int width, int height)
 {
-	char *dst;
-	unsigned int i, j, size;
+	int i, j, k, l;
+	int **a;
 
-	/*If the array is empty*/
-	if (s1 == NULL)
-		s1 = "";
+	if (width <= 0 || height <= 0)
+		return (NULL);
 
-	if (s2 == NULL)
-		s2 = "";
+	a = malloc(sizeof(int *) * height);
 
-	/*count size total*/
-	size = (_strlen(s1) + _strlen(s2) + 1);
-
-	/*malloc*/
-	dst = (char *) malloc(size * sizeof(char));
-
-	if (dst == 0)
+	if (a == NULL)
 	{
+		free(a);
 		return (NULL);
 	}
 
-	/*Concatenate arrays*/
-	for (i = 0; *(s1 + i) != '\0'; i++)
-		*(dst + i) = *(s1 + i);
-
-	for (j = 0; *(s2 + j) != '\0'; j++)
+	for (i = 0; i < height; i++)
 	{
-		*(dst + i) = *(s2 + j);
-		i++;
+		a[i] = malloc(sizeof(int) * width);
+
+		if (a[i] == NULL)
+		{
+			for (j = i; j >= 0; j--)
+			{
+				free(a[j]);
+			}
+
+			free(a);
+			return (NULL);
+		}
 	}
 
-	return (dst);
+	for (k = 0; k < height; k++)
+	{
+		for (l = 0; l < width; l++)
+		{
+			a[k][l] = 0;
+		}
+	}
+
+	return (a);
 }
