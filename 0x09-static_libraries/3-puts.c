@@ -4,7 +4,9 @@
 #include <ctype.h>
 #include <string.h>
 
-void '-' puts(char *s)
+void _puts(char *s)
 {
-puts(s);
+    puts(s);
 }
+
+
