@@ -2,17 +2,17 @@
 
 /**
  * bit_clear-sets value of given bit to 0
- * @x: points the number to change
+ * @n: points the number to change
  * @index: index of the bit to clear
  *
  * Return: 1 for success, -1 for failure
  */
-int clear_bit(unsigned long int *x, unsigned int index)
+int clear_bit(unsigned long int *n, unsigned int index)
 {
 	if (index > 63)
 		return (-1);
 
-	*x = (~(1UL << index) & *x);
+	*n = (~(1UL << index) & *n);
 	return (1);
 }
 
