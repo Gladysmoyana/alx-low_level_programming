@@ -1,16 +1,18 @@
 #include "main.h"
-
 /**
- * @index: starting from 0 of the bit you want to get
- * @n: number to search
- * Return: value of the bits or -1 error occured
- */
+ * get_bit - gives the bit at a specific index.
+ * @n: the number
+ * @index: the index
+ * Return: the bit at the index or -1 if fails
+*/
 int get_bit(unsigned long int n, unsigned int index)
 {
-	int value_bit;
+	unsigned long int bit = 1;
 
-	if (index > 63)
-		return (-1);
-	value_bit = (n >> index) & 1;
-	return (value_bit);
+	bit = (bit << (index));
+	if (n & bit)
+		return (1);
+	else
+		return (0);
+
 }
